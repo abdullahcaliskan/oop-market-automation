@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjeFinal
+namespace OOP_Okul
 {
     public class UrunTanimi
     {
-        // Aggregation
-        public UreticiFirma Uretici;
         public string Ad { get; set; }
         public int BarkodNo { get; set; }
         public DateTime SKT { get; set; }
