@@ -4,31 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjeFinal
+namespace OOP_Okul
 {
-    public enum eBirim
+    public class Urun : IKopyalanabilir
     {
-        kilogram = 1,
-        adet = 2
-    };
-    public class Urun
-    {
+        
         // Composition
         public UrunTanimi UrunBilgi = new UrunTanimi();
-        // Aggregation
-        public Tedarikci tedarikci;
+        public Tedarikci tedarikci = new Tedarikci();
         public int Miktar { get; set; }
         public decimal Fiyat { get; set; }
-        public eBirim Birim { get; set; }
 
         public string BilgiGoster()
         {
-            return ("Adı : " + this.UrunBilgi.Ad + Environment.NewLine +
-                    "BarkodNo : " + this.UrunBilgi.BarkodNo + Environment.NewLine +
-                    "Miktar : " + this.Miktar + Environment.NewLine +
-                    "Birim : " + this.Birim + Environment.NewLine +
-                    "Fiyat : " + this.Fiyat + Environment.NewLine +
-                    "Ek Açıklama : " + this.UrunBilgi.EkAciklama);
+            // Message box için kullanılabilir durumdaki 
+            return (this.UrunBilgi.BarkodNo + " :: " +
+                    this.UrunBilgi.Ad + " :: " +
+                    Miktar + " :: " +
+                    tedarikci.AdSoyad + " :: " +
+                    UrunBilgi.EkAciklama + Environment.NewLine);
+        }
+        public void UrunEkle(string ad, int b_no, DateTime skt, string ek_aciklama, Tedarikci tdarikci, int miktar, decimal fiyat)
+        {
+            // TODO : Validation gerekli
+            this.UrunBilgi.Ad = ad;
+            this.UrunBilgi.BarkodNo = b_no;
+            this.UrunBilgi.SKT = skt;
+            this.UrunBilgi.EkAciklama = ek_aciklama;
+            this.Miktar = miktar;
+            this.Fiyat = fiyat;
+            this.tedarikci = tdarikci;
+        }
+
+        public object Kopyala()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
